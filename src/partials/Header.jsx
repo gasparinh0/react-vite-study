@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useState } from 'react'
+
+import { NavLink } from "react-router";
 
 //Imports do material UI
 import {
@@ -8,32 +11,66 @@ import {
     Typography,
     Button,
     IconButton,
+    Drawer,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText
 } from '@mui/material'
 
-//Imports do react-icons
-import { GiHamburgerMenu } from "react-icons/gi";
+//Imports do react Icons
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { FaHome } from "react-icons/fa";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 export default function Header() {
+    const [menuOpen, setMenuOpen] = useState(false)
+
+    const handleToggleMenu = () => {
+        //O ! inverte o valor, se estiver true, ele fica false, e vice-versa.
+        setMenuOpen(!menuOpen)
+    }
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <GiHamburgerMenu />
-                    </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        News
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </Box>
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={handleToggleMenu}
+                        >
+                            <GiHamburgerMenu />
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            News
+                        </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+            <Drawer open={menuOpen} onClose={() => handleToggleMenu()}>
+                <List>
+                    <ListItem button>
+                        <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleToggleMenu}>
+                            <ListItemIcon><FaHome /></ListItemIcon>
+                            <ListItemText>Home</ListItemText>
+                        </NavLink>
+                    </ListItem>
+                </List>
+                <List>
+                    <ListItem button>
+                        <NavLink to="/customers" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleToggleMenu}>
+                            <ListItemIcon><IoAddCircleOutline /></ListItemIcon>
+                            <ListItemText>Cadastro de clientes</ListItemText>
+                        </NavLink>
+                    </ListItem>
+                </List>
+            </Drawer>
+        </>
     );
 }
