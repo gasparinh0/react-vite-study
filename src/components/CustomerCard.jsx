@@ -14,15 +14,16 @@ import { MdModeEdit, MdDelete } from "react-icons/md";
 //Imports de componentes
 import ModalConfirm from './ModalConfirm.jsx'
 
-export default function CustomerCard({ name, lastname, email, avatar }) {
+export default function CustomerCard({ name, lastname, email, avatar, onRemoveCustomer, id }) {
   const [openModal, setOpenModal] = useState(false)
 
   const handleToggleOpenModal = () => {
     setOpenModal(!openModal)
   }
 
-  const handleConfirmModal = () => {
-    alert("ok")
+  const handleConfirmModal = id => {
+    onRemoveCustomer(id)
+    handleToggleOpenModal()
   }
 
   const handleRemoveCustomer = () => {
@@ -50,7 +51,7 @@ export default function CustomerCard({ name, lastname, email, avatar }) {
           </IconButton>
         </CardActions>
       </Card>
-      <ModalConfirm open={openModal} onClose={handleToggleOpenModal} onConfirm={handleConfirmModal} title={'Deseja realmente excluir esse cadastro?'} message={"Ao confirmar, não será possível reverter essa operação"}/>
+      <ModalConfirm open={openModal} onClose={handleToggleOpenModal} onConfirm={() => handleConfirmModal(id)} title={'Deseja realmente excluir esse cadastro?'} message={"Ao confirmar, não será possível reverter essa operação"}/>
     </>
   );
 }
