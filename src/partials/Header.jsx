@@ -20,7 +20,7 @@ import {
 
 //Imports do react Icons
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUser } from "react-icons/fa";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 export default function Header() {
@@ -59,6 +59,14 @@ export default function Header() {
                         <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleToggleMenu}>
                             <ListItemIcon><FaHome /></ListItemIcon>
                             <ListItemText>Home</ListItemText>
+                        </NavLink>
+                    </ListItem>
+                </List>
+                <List>
+                    <ListItem button>
+                        <NavLink to="/customers" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleToggleMenu}>
+                            <ListItemIcon><FaUser /></ListItemIcon>
+                            <ListItemText>Lista de clientes</ListItemText>
                         </NavLink>
                     </ListItem>
                 </List>
