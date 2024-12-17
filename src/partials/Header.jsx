@@ -72,7 +72,7 @@ export default function Header() {
                 </List>
                 <List>
                     <ListItem button>
-                        <NavLink to="/customers" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleToggleMenu}>
+                        <NavLink to="/customers/add" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleToggleMenu}>
                             <ListItemIcon><IoAddCircleOutline /></ListItemIcon>
                             <ListItemText>Cadastro de clientes</ListItemText>
                         </NavLink>
