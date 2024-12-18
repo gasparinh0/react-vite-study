@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react'
+import { NavLink } from 'react-router';
 
 //Imports do material UI Card
 import Card from '@mui/material/Card';
@@ -43,15 +44,17 @@ export default function CustomerCard({ name, lastname, email, avatar, onRemoveCu
           subheader={email}
         />
         <CardActions disableSpacing>
-          <IconButton aria-label="edit">
-            <MdModeEdit />
-          </IconButton>
+          <NavLink to={`/customers/edit/${id}`}>
+            <IconButton aria-label="edit">
+              <MdModeEdit />
+            </IconButton>
+          </NavLink>
           <IconButton aria-label="delete" onClick={handleRemoveCustomer}>
             <MdDelete />
           </IconButton>
         </CardActions>
       </Card>
-      <ModalConfirm open={openModal} onClose={handleToggleOpenModal} onConfirm={() => handleConfirmModal(id)} title={'Deseja realmente excluir esse cadastro?'} message={"Ao confirmar, não será possível reverter essa operação"}/>
+      <ModalConfirm open={openModal} onClose={handleToggleOpenModal} onConfirm={() => handleConfirmModal(id)} title={'Deseja realmente excluir esse cadastro?'} message={"Ao confirmar, não será possível reverter essa operação"} />
     </>
   );
 }
