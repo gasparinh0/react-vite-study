@@ -5,26 +5,30 @@ import Home from './pages/Home.jsx'
 import CustomersList from './pages/customers/List.jsx'
 import CustomersRegister from './pages/customers/Register.jsx'
 import CustomersEdit from './pages/customers/Edit.jsx'
+import Login from './pages/Login.jsx'
 
 import TemplateDefault from "./templates/Default.jsx"
 import TemplatePage from "./templates/Page.jsx"
+import TemplateClean from "./templates/Clean.jsx"
+
 
 import { ToastContainer } from 'react-toastify'; //Imports do react-toastify
 
 function App() {
-
   return (
-    <Router>
-      <TemplateDefault>
-      <ToastContainer />
+      <Router>
         <Routes>
-          <Route path="/customers/edit/:id" element={<TemplatePage title="Editar cliente" Component={CustomersEdit} />} />
-          <Route path="/customers/add" element={<TemplatePage title="Cadastro de clientes" Component={CustomersRegister} />} />
-          <Route path="/customers" element={<TemplatePage title="Lista de clientes" Component={CustomersList} />} />
-          <Route path="/" element={<TemplatePage title="Home" Component={Home} />} />
+          {/* Rota para login */}
+          <Route path="/login" element={<TemplateClean title="Acesso Restrito" Component={Login} />} />
+
+          {/* Rotas com TemplateDefault */}
+          <Route path="/" element={<TemplateDefault><TemplatePage title="Home" Component={Home} /></TemplateDefault>} />
+          <Route path="/customers" element={<TemplateDefault><TemplatePage title="Lista de clientes" Component={CustomersList} /></TemplateDefault>} />
+          <Route path="/customers/add" element={<TemplateDefault><TemplatePage title="Cadastro de clientes" Component={CustomersRegister} /></TemplateDefault>} />
+          <Route path="/customers/edit/:id" element={<TemplateDefault><TemplatePage title="Editar cliente" Component={CustomersEdit} /></TemplateDefault>} />
         </Routes>
-      </TemplateDefault>
-    </Router>
+        <ToastContainer />
+      </Router>
   )
 }
 
