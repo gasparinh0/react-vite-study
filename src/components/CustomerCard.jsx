@@ -31,8 +31,6 @@ export default function CustomerCard({ name, lastname, email, avatar, onRemoveCu
     handleToggleOpenModal()
   }
 
-  console.log(handleToggleOpenModal)
-
   return (
     <>
       <Card sx={{ maxWidth: 345 }}>
