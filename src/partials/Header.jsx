@@ -23,7 +23,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaHome, FaUser } from "react-icons/fa";
 import { IoAddCircleOutline } from "react-icons/io5";
 
-export default function Header() {
+export default function Header({ user }) {
     const [menuOpen, setMenuOpen] = useState(false)
 
     const handleToggleMenu = () => {
@@ -49,7 +49,11 @@ export default function Header() {
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             News
                         </Typography>
-                        <Button color="inherit">Login</Button>
+                        {
+                            user.logged
+                                ? <Typography variant="h4">{user.email}</Typography>
+                                : <Button color="inherit">Login</Button>
+                        }
                     </Toolbar>
                 </AppBar>
             </Box>
